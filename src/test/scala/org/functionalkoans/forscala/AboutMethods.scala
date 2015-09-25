@@ -64,12 +64,12 @@ class AboutMethods extends KoanSuite {
 
   koan( """Once you have an =, it is understood that there will be a return type and can be inferred""") {
     def foo(x: Int) = 3 + 4
-    foo(3).isInstanceOf[Int] should be(__) //.isInstanceOf[...] is analogous to Java's instanceOf
+    foo(3).isInstanceOf[Int] should be(true) //.isInstanceOf[...] is analogous to Java's instanceOf
   }
 
   koan( """Of course if you wish to be explicit about the return type, you can attach it at the end of the method""") {
     def foo(x: Int): Int = 3 + 4
-    foo(3).isInstanceOf[Int] should be(__)
+    foo(3).isInstanceOf[Int] should be(true)
   }
 
   koan(
@@ -81,7 +81,7 @@ class AboutMethods extends KoanSuite {
       else x * factorial(x-1)
     }
 
-    factorial(4) should be(__) // List(...) is how a list is created more about lists later.
+    factorial(4) should be(4*3*2) // List(...) is how a list is created more about lists later.
 
     //Note: Fire up a REPL and paste factorial(100000)!
   }
@@ -106,7 +106,7 @@ class AboutMethods extends KoanSuite {
       fact(i, 1)
     }
 
-    factorial(4) should be(__)
+    factorial(4) should be(24)
 
     //Note: Fire up a REPL and try factorial(100000) now!
   }
@@ -135,7 +135,7 @@ class AboutMethods extends KoanSuite {
 
     class Pennies(val n:Int)
     def doYouHaveAnySpareChange_?() = new Pennies(25)
-    doYouHaveAnySpareChange_?.n should be(__)
+    doYouHaveAnySpareChange_?.n should be(25)
   }
 
   koan(
@@ -150,7 +150,7 @@ class AboutMethods extends KoanSuite {
     }
 
     val probationEmployee = `put employee on probation`(new Employee("Milton", "Waddams", ""))
-    probationEmployee.`employee status` should be (__)
+    probationEmployee.`employee status` should be ("Probation")
   }
 
   koan(
@@ -160,7 +160,7 @@ class AboutMethods extends KoanSuite {
     def add(a:Int, b:Int) = a + b //implied return type of Int!
     def performSideEffect():Unit = System.currentTimeMillis
 
-    add(4,6) should be (__)
+    add(4,6) should be (10)
     performSideEffect() //Notice the parenthesis, since the method we called is Unit!
   }
 
@@ -173,7 +173,7 @@ class AboutMethods extends KoanSuite {
     }
 
     val foo = new Foo(9)
-    10 ~: foo should be (__)
-    foo.~:(40) should be (__)
+    10 ~: foo should be (22)
+    foo.~:(40) should be (52)
   }
 }
